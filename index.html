@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wed color scroll</title>
+
+</head>
+<body>
+<div class="container">
+  <h1>彩卷 選號 </h1>
+  <div class="selected-numbers"></div>
+  <button onclick="selectNumber()">選號(Bingo Bingo)</button>
+  <button onclick="clearNumbers()">刪除選號</button>
+  <button onclick="resetNumbers()">選號(大樂透)</button>
+</div>
+ <p style="title">使用方式</p>
+ <p style="title">
+   點擊 按鍵選號
+ </p>
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color:rgb(999,9,1000);
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.selected-numbers {
+    margin-top: 20px;
+}
+ p {
+   color:rgba(255, 182, 0, 1);
+    font-size:20px;
+     margin:2px;
+ }
+  footer{
+    background-color:rgba(0, 0, 0, 1);
+    color:rgba(255, 249, 249, 1);
+    margin:0px;
+    font-size:14px;
+  }
+  
+ </style>
+
+<script>
+
+let selectedNumbers = [];
+
+function selectNumber() {
+  if (selectedNumbers.length === 6) {
+      alert("您已選擇六個號碼！");
+      return;
+  }
+
+  let num = Math.floor(Math.random() * 49) + 1;
+
+  if (!selectedNumbers.includes(num)) {
+      selectedNumbers.push(num);
+      displaySelectedNumbers();
+  } else {
+      selectNumber();
+  }
+}
+
+function clearNumbers() {
+  selectedNumbers = [];
+  displaySelectedNumbers();
+}
+
+function resetNumbers() {
+  clearNumbers();
+  
+  for (let i = selectedNumbers.length; i < 6; i++) {
+      selectNumber();
+  }
+}
+
+function displaySelectedNumbers() {
+  const selectedNumbersDiv = document.querySelector('.selected-numbers');
+  
+  selectedNumbersDiv.innerHTML = "";
+  
+  selectedNumbers.forEach(number => {
+      const numberSpan = document.createElement('span');
+      numberSpan.textContent = number + " ";
+      numberSpan.classList.add('selected-number');
+      selectedNumbersDiv.appendChild(numberSpan);
+  });
+}
+</script>
+ <footer>
+   2024|youxiang|wed|版權所有|盜用必究
+ </footer>
